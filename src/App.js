@@ -1,9 +1,18 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'App.scss';
-import Header from 'components/Header';
+import ClientLayout from 'layouts/Client';
+import Home from 'pages/Home';
 
 function App() {
-    return <Header />;
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<ClientLayout />}>
+                    <Route path="" element={<Home />} />
+                </Route>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
