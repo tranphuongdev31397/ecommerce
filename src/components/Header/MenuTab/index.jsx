@@ -1,8 +1,9 @@
 import DropdownHeader from 'components/Dropdown/DropdownHeader';
 import React, { useEffect, useState } from 'react';
 import { capitalizeString } from 'common/functions/index';
-import { NavLink } from 'react-router-dom';
+import { fetchCategories } from '../modules/categorySlice';
 import { categoryApi } from 'apis/categoryApi';
+import { useDispatch } from 'react-redux';
 function MenuTab() {
     let currentTab = [
         'home',
@@ -14,12 +15,15 @@ function MenuTab() {
         'contact'
     ];
     const [tabs, setTabs] = useState(null);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchAllCategory = async () => {
             const categories = await categoryApi.getAll();
+
             currentTab.splice(1, 0, ...categories);
             setTabs(currentTab);
+
+            dispatch(fetchCategories(categories));
         };
 
         fetchAllCategory();

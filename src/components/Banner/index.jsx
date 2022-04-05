@@ -5,7 +5,7 @@ function Banner({ banner }) {
     //banner is object
     const { bgImage, title, subject, description } = banner;
     return (
-        <div class="w-full h-full relative">
+        <div className="w-full h-full relative">
             <div className="banner__bg w-full h-full ">
                 <img
                     src={bgImage}
@@ -13,7 +13,7 @@ function Banner({ banner }) {
                     alt="bannerImg"
                 />
             </div>
-            <div class="text-center mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="text-center mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="sales bg-slate-200 text-sky-500 my-4 text-xl p-3 px-6 w-fit mx-auto">
                     {description}
                 </div>
