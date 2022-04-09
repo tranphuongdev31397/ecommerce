@@ -1,15 +1,15 @@
-import { Card, Col, Empty, Row } from 'antd';
+import { Card, Col, Empty, Row, Tabs } from 'antd';
 import { productApi } from 'apis/productApi';
 import { capitalizeString } from 'common/functions';
 import CardItem from 'components/CardItem';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import './style.scss';
 function GridSystem() {
     const tabs = useSelector((state) => state.categoriesReducer.categories);
-    console.log(tabs[0]);
+
     const [activeKey, setActiveKey] = useState(tabs[0]);
-    const [products, setProducts] = useState([] || null);
+    const [products, setProducts] = useState();
 
     const tabList = tabs.map((tab) => {
         return { key: tab, tab: capitalizeString(tab) };
@@ -27,22 +27,18 @@ function GridSystem() {
         };
 
         fetchProductInCategory();
-
-        return () => {
-            console.log('unmounted');
-        };
     }, [activeKey]);
 
-    if (tabs.length === 0) {
+    if (!Array.isArray(products)) {
         return <div>Loading</div>;
     }
     return (
         <>
             <Card
+                bordered={false}
                 style={{ width: '100%' }}
                 className="mx-auto"
                 tabList={tabList}
-                bordered="false"
                 activeTabKey={activeKey}
                 onTabChange={(key) => {
                     onTabChange(key);

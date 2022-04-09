@@ -11,6 +11,7 @@ const categorySlice = createSlice({
     reducers: {
         fetchCategories(state, action) {
             state.categories = action.payload;
+            state.loading = false;
         }
     }
 });

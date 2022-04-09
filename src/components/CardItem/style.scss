@@ -16,3 +16,9 @@
 
     opacity: 1;
 }
+.card__item-btn {
+    transform: scale(0);
+}
+.card__item:hover .card__item-btn {
+    transform: scale(1);
+}

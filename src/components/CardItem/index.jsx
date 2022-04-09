@@ -40,7 +40,7 @@ function CardItem({ item }) {
                             </div>
                         </div>
                         <Button
-                            className="bg-black opacity-100 text-white border-black font-bold mt-4"
+                            className="bg-black opacity-100 text-white border-black font-bold mt-4 card__item-btn"
                             size="large"
                         >
                             ADD TO CART
@@ -50,7 +50,7 @@ function CardItem({ item }) {
             }
         >
             <Meta title={title} description={`$ ${price}`} />
-            <Rate allowHalf defaultValue={rating?.rate || 5} />
+            <Rate allowHalf defaultValue={rating?.rate || 5} disabled />
         </Card>
     );
 }
