@@ -23,7 +23,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem(state, action) {
+        actAddItem(state, action) {
             console.log(
                 state.cart.includes((item) => item.id === action.payload.id)
             );
@@ -41,6 +41,6 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addItem } = cartSlice.actions;
+export const { actAddItem } = cartSlice.actions;
 
 export default cartSlice.reducer;
