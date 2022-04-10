@@ -16,6 +16,7 @@ function MenuTab() {
         'contact'
     ];
     const [tabs, setTabs] = useState(null);
+    const [caterogies, setCaterogies] = useState();
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchAllCategory = async () => {
@@ -23,7 +24,7 @@ function MenuTab() {
 
             currentTab.splice(1, 0, ...categories);
             setTabs(currentTab);
-
+            setCaterogies(categories);
             dispatch(fetchCategories(categories));
         };
 
@@ -47,17 +48,27 @@ function MenuTab() {
                                 <Link to="/">{capitalizeString(tab)}</Link>
                             </div>
                         );
+                    } else if (caterogies?.includes(tab)) {
+                        return (
+                            <div
+                                className="mx-2 w-30 hover:text-sky-500 hover:bg-white h-full p-4 whitespace-nowrap"
+                                key={idx}
+                            >
+                                <Link state={tab} to="/shopping">
+                                    {capitalizeString(tab)}
+                                </Link>
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div
+                                className="mx-2 w-30 hover:text-sky-500 hover:bg-white h-full p-4 whitespace-nowrap"
+                                key={idx}
+                            >
+                                <a>{capitalizeString(tab)}</a>
+                            </div>
+                        );
                     }
-                    return (
-                        <div
-                            className="mx-2 w-30 hover:text-sky-500 hover:bg-white h-full p-4 whitespace-nowrap"
-                            key={idx}
-                        >
-                            <Link state={tab} to="/shopping">
-                                {capitalizeString(tab)}
-                            </Link>
-                        </div>
-                    );
                 } else {
                     return (
                         <div

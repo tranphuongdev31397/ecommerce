@@ -17,8 +17,10 @@ function PageBanner({ bgImg, titlePage }) {
                         <Breadcrumb className="text-2xl font-extrabold text-white bannerPage__breadcrumb">
                             <Breadcrumb.Item className="text-white">
                                 <Link to="/" className="">
-                                    <HomeOutlined className="text-2xl text-white align-middle" />{' '}
-                                    <span className="text-white">Home</span>
+                                    <span className="align-middle">
+                                        <HomeOutlined className="text-2xl mr-2 text-white align-top" />
+                                        Home
+                                    </span>
                                 </Link>
                             </Breadcrumb.Item>
 

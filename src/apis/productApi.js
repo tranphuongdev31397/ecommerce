@@ -8,5 +8,9 @@ export const productApi = {
     getInCategory: (category, params) => {
         const url = `/products/category/${category}`;
         return axiosClient.get(url, { params });
+    },
+    getProductDetail: (id, params) => {
+        const url = `products/${id}`;
+        return axiosClient.get(url, { params });
     }
 };
