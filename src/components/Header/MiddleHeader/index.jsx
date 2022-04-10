@@ -1,10 +1,14 @@
 import { ShoppingCartOutlined, ShoppingFilled } from '@ant-design/icons';
-import React from 'react';
-import { Avatar, Badge, Input, Space } from 'antd';
+import React, { useState } from 'react';
+import { Avatar, Badge, Input, Popover, Space, Tooltip } from 'antd';
+import CartBox from './CartBox';
+import { useSelector } from 'react-redux';
 
-function MiddleHeader({ itemCount = 0 }) {
+function MiddleHeader() {
     const { Search } = Input;
     const onSearch = (value) => console.log(value);
+
+    const cart = useSelector((state) => state.cartReducer.cart);
     return (
         <>
             <div className="flex justify-between container mx-auto items-center p-4">
@@ -29,13 +33,15 @@ function MiddleHeader({ itemCount = 0 }) {
                 </div>
                 <div className="header__cart flex flex-col w-fit items-center gap-2">
                     {/* Cart */}
-                    <Badge
-                        count={itemCount}
-                        showZero
-                        color="rgb(14 165 233 / 1)"
-                    >
-                        <ShoppingCartOutlined className="text-sky-500 text-4xl" />
-                    </Badge>
+                    <Popover content={<CartBox />}>
+                        <Badge
+                            count={cart.length}
+                            showZero
+                            color="rgb(14 165 233 / 1)"
+                        >
+                            <ShoppingCartOutlined className="text-sky-500 text-4xl" />
+                        </Badge>
+                    </Popover>
                     <span className="uppercase">Shopping Cart</span>
                 </div>
             </div>

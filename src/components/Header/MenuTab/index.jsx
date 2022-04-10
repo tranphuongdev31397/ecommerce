@@ -1,8 +1,10 @@
 import DropdownHeader from 'components/Dropdown/DropdownHeader';
 import React, { useEffect, useState } from 'react';
 import { capitalizeString } from 'common/functions/index';
-import { NavLink } from 'react-router-dom';
+import { fetchCategories } from '../modules/categorySlice';
 import { categoryApi } from 'apis/categoryApi';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 function MenuTab() {
     let currentTab = [
         'home',
@@ -14,12 +16,16 @@ function MenuTab() {
         'contact'
     ];
     const [tabs, setTabs] = useState(null);
-
+    const [caterogies, setCaterogies] = useState();
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchAllCategory = async () => {
             const categories = await categoryApi.getAll();
+
             currentTab.splice(1, 0, ...categories);
             setTabs(currentTab);
+            setCaterogies(categories);
+            dispatch(fetchCategories(categories));
         };
 
         fetchAllCategory();
@@ -33,14 +39,42 @@ function MenuTab() {
         <div className="container mx-auto flex justify-start text-white font-medium">
             {tabs.map((tab, idx) => {
                 if (typeof tab === 'string') {
-                    return (
-                        <div className="mx-6" key={idx}>
-                            <a>{capitalizeString(tab)}</a>
-                        </div>
-                    );
+                    if (tab === 'home') {
+                        return (
+                            <div
+                                className="mx-2 w-30 hover:text-sky-500 hover:bg-white h-full p-4 whitespace-nowrap"
+                                key={idx}
+                            >
+                                <Link to="/">{capitalizeString(tab)}</Link>
+                            </div>
+                        );
+                    } else if (caterogies?.includes(tab)) {
+                        return (
+                            <div
+                                className="mx-2 w-30 hover:text-sky-500 hover:bg-white h-full p-4 whitespace-nowrap"
+                                key={idx}
+                            >
+                                <Link state={tab} to="/shopping">
+                                    {capitalizeString(tab)}
+                                </Link>
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div
+                                className="mx-2 w-30 hover:text-sky-500 hover:bg-white h-full p-4 whitespace-nowrap"
+                                key={idx}
+                            >
+                                <a>{capitalizeString(tab)}</a>
+                            </div>
+                        );
+                    }
                 } else {
                     return (
-                        <div className="mx-6" key={idx}>
+                        <div
+                            className="mx-2 p-4 hover:text-sky-500 hover:bg-white"
+                            key={idx}
+                        >
                             <DropdownHeader
                                 menuArr={tab.menuCategory.map((item) => ({
                                     title: capitalizeString(item)

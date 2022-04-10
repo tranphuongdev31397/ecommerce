@@ -10,7 +10,6 @@ function BannerContainer() {
             spaceBetween={50}
             slidesPerView={1}
             onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
         >
             {banners.length != 0 &&
                 banners.map((banner) => {
