@@ -1,16 +1,19 @@
 import { HeartOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Card, Popover, Rate } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addItem } from 'slices/cartSlice';
 import './style.scss';
 
 const { Meta } = Card;
 
 function CardItem({ item }) {
-    const { rating, image, title, price } = item;
+    const { rating, image, title, price, id } = item;
 
     const detail = <p>Detail</p>;
     const wishlist = <p>Add to wish list</p>;
-
+    const dispatch = useDispatch();
     return (
         <Card
             className="card__item w-full"
@@ -31,17 +34,20 @@ function CardItem({ item }) {
                                 >
                                     <HeartOutlined className="text-lg bg-white text-sky-500 p-1 px-2" />
                                 </Popover>
-                                <Popover
-                                    content={detail}
-                                    className="relative mx-2"
-                                >
-                                    <SearchOutlined className="text-lg bg-white text-sky-500 p-1 px-2" />
-                                </Popover>
+                                <Link to={`/product-detail/${id}`}>
+                                    <Popover
+                                        content={detail}
+                                        className="relative mx-2"
+                                    >
+                                        <SearchOutlined className="text-lg bg-white text-sky-500 p-1 px-2" />
+                                    </Popover>
+                                </Link>
                             </div>
                         </div>
                         <Button
                             className="bg-black opacity-100 text-white border-black font-bold mt-4 card__item-btn"
                             size="large"
+                            onClick={() => dispatch(addItem(item))}
                         >
                             ADD TO CART
                         </Button>

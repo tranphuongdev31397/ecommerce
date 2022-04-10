@@ -1,6 +1,7 @@
 import { Spin } from 'antd';
 import CardItem from 'components/CardItem';
 import GridSystem from 'components/GridSystem';
+import Loader from 'components/Loader';
 import BannerContainer from 'containers/BannerContainer';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -18,7 +19,7 @@ function Home() {
             </>
         );
     } else {
-        return <Spin />;
+        return <Loader />;
     }
 }
 

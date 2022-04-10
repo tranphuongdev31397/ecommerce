@@ -2,6 +2,7 @@ import { Card, Col, Empty, Row, Tabs } from 'antd';
 import { productApi } from 'apis/productApi';
 import { capitalizeString } from 'common/functions';
 import CardItem from 'components/CardItem';
+import Loader from 'components/Loader';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './style.scss';
@@ -18,7 +19,6 @@ function GridSystem() {
     const onTabChange = (key) => {
         setActiveKey(key);
     };
-    console.log(products);
     useEffect(() => {
         //call API
         const fetchProductInCategory = async () => {
@@ -27,10 +27,13 @@ function GridSystem() {
         };
 
         fetchProductInCategory();
+        return () => {
+            setProducts();
+        };
     }, [activeKey]);
 
     if (!Array.isArray(products)) {
-        return <div>Loading</div>;
+        return <Loader />;
     }
     return (
         <>

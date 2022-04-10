@@ -10,7 +10,7 @@ function Banner({ banner }) {
             <div className="banner__bg w-full h-full">
                 <img
                     src={bgImage}
-                    className="object-cover object-center"
+                    className="object-cover object-center w-full h-full"
                     alt="bannerImg"
                 />
             </div>
