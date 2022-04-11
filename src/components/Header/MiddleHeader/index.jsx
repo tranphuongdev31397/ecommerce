@@ -1,6 +1,6 @@
 import { ShoppingCartOutlined, ShoppingFilled } from '@ant-design/icons';
 import React, { useState } from 'react';
-import { Avatar, Badge, Input, Popover, Space, Tooltip } from 'antd';
+import { Badge, Input, Popover, Space } from 'antd';
 import CartBox from './CartBox';
 import { useSelector } from 'react-redux';
 

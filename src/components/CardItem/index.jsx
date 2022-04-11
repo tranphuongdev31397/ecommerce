@@ -3,7 +3,7 @@ import { Button, Card, Popover, Rate } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addItem } from 'slices/cartSlice';
+import { actAddItem } from 'slices/cartSlice';
 import './style.scss';
 
 const { Meta } = Card;
@@ -47,7 +47,7 @@ function CardItem({ item }) {
                         <Button
                             className="bg-black opacity-100 text-white border-black font-bold mt-4 card__item-btn"
                             size="large"
-                            onClick={() => dispatch(addItem(item))}
+                            onClick={() => dispatch(actAddItem(item))}
                         >
                             ADD TO CART
                         </Button>
