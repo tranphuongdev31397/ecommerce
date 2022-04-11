@@ -1,0 +1,18 @@
+.tag__coupon:hover {
+    .tag__coupon-content {
+        display: none;
+        transition: all 0.25s;
+    }
+    .tag__coupon-delete {
+        display: block;
+    }
+}
+.tag__coupon {
+    .tag__coupon-content {
+        display: block;
+    }
+    .tag__coupon-delete {
+        display: none;
+    }
+    cursor: pointer;
+}

@@ -13,3 +13,7 @@ export const capitalizeString = (string) => {
 
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
+export const randomColor = () => {
+    //return hexa code color
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+};

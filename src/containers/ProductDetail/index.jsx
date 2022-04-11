@@ -8,9 +8,10 @@ import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { actAddItem } from 'slices/cartSlice';
 //const from ui
-const { TabPane } = Tabs;
 
 function ProductDetailCtn() {
+    const { TabPane } = Tabs;
+
     const { productId } = useParams();
     const [product, setProduct] = useState();
     const defaultValue = 0;

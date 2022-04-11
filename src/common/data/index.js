@@ -28,3 +28,45 @@ export const banners = [
         title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.'
     }
 ];
+export const coupon = [
+    {
+        remaining: 4,
+        couponCode: 'percent20',
+        couponType: 'testpercent',
+        discount: 0.2,
+        discountType: 'percent',
+        id: '1'
+    },
+    {
+        remaining: 4,
+        couponCode: 'percent40',
+        couponType: 'testpercent',
+        discount: 0.4,
+        discountType: 'percent',
+        id: '2'
+    },
+    {
+        remaining: 4,
+        couponCode: 'percent60',
+        couponType: 'testpercent',
+        discount: 0.6,
+        discountType: 'percent',
+        id: '3'
+    },
+    {
+        remaining: 4,
+        couponCode: 'freeship01',
+        couponType: 'freeship',
+        discount: 1,
+        discountType: 'deduction',
+        id: '4'
+    },
+    {
+        remaining: 4,
+        couponCode: 'freeship02',
+        couponType: 'freeship',
+        discount: 1,
+        discountType: 'deduction',
+        id: '5'
+    }
+];
