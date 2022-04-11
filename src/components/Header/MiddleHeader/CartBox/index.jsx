@@ -6,6 +6,7 @@ import {
 import { Button, Empty } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { actChangeQuality, actDeleteItem } from 'slices/cartSlice';
 
 function CartBox() {
@@ -91,7 +92,9 @@ function CartBox() {
                             })}
                     </div>
                     <div className="my-2">Total: {totalPrice} $</div>
-                    <Button className="w-full my-2">Check out</Button>
+                    <Button className="w-full my-2">
+                        <Link to="/checkout">Check out</Link>
+                    </Button>
                 </>
             )}
         </div>

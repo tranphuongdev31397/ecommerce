@@ -10,7 +10,7 @@ function Header() {
                 <TopHeader />
                 <MiddleHeader />
             </div>
-            <div className="w-full navigation bg-sky-500 px-4">
+            <div className="w-full navigation bg-sky-500 px-4 overflow-auto">
                 <MenuTab />
             </div>
         </>

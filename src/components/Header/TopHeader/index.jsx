@@ -2,6 +2,7 @@ import React from 'react';
 import { PhoneFilled } from '@ant-design/icons';
 import DropdownHeader from 'components/Dropdown/DropdownHeader';
 import Flags from 'country-flag-icons/react/3x2';
+import { Link } from 'react-router-dom';
 function TopHeader() {
     return (
         <>
@@ -53,7 +54,7 @@ function TopHeader() {
                             My Cart
                         </div>
                         <div className="p-2 border-r-2 border-gray-100">
-                            Check out
+                            <Link to="/checkout">Check out</Link>
                         </div>
                         <div className="p-2 border-r-2 border-gray-100">
                             Log in
