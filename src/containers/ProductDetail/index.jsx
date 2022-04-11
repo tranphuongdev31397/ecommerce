@@ -4,7 +4,9 @@ import { capitalizeString } from 'common/functions';
 import ImageZoom from 'components/ImageZoom';
 import Loader from 'components/Loader';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { actAddItem } from 'slices/cartSlice';
 //const from ui
 const { TabPane } = Tabs;
 
@@ -13,6 +15,7 @@ function ProductDetailCtn() {
     const [product, setProduct] = useState();
     const defaultValue = 0;
 
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchProductDetail = async () => {
             const response = await productApi.getProductDetail(productId);
@@ -68,7 +71,12 @@ function ProductDetailCtn() {
                         </p>
                     </div>
                     <div className="productDetail__action my-4">
-                        <Button className="mx-2" type="default" size="large">
+                        <Button
+                            className="mx-2"
+                            type="default"
+                            size="large"
+                            onClick={() => dispatch(actAddItem(product))}
+                        >
                             Add to cart
                         </Button>
                         <Button className="mx-2" type="default" size="large">

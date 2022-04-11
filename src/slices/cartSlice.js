@@ -23,10 +23,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem(state, action) {
-            console.log(
-                state.cart.includes((item) => item.id === action.payload.id)
-            );
+        actAddItem(state, action) {
             if (state.cart.some((item) => item.id === action.payload.id)) {
                 const idx = state.cart.findIndex(
                     (item) => item.id === action.payload.id
@@ -37,10 +34,28 @@ const cartSlice = createSlice({
                 const item = { ...action.payload, quality: 1 };
                 state.cart.push(item);
             }
+        },
+        actDeleteItem(state, { payload }) {
+            state.cart = state.cart.filter((item) => item.id !== payload);
+        },
+        actChangeQuality(state, { payload }) {
+            const { id, action } = payload;
+            const idx = state.cart.findIndex((item) => item.id === id);
+            if (action === 'increase') {
+                state.cart[idx].quality = state.cart[idx].quality + 1;
+            } else if (action === 'decrease') {
+                if (state.cart[idx].quality === 1) {
+                    console.log(state.cart.filter((item) => item.id !== id));
+                    state.cart = state.cart.filter((item) => item.id !== id);
+                } else {
+                    state.cart[idx].quality = state.cart[idx].quality - 1;
+                }
+            }
         }
     }
 });
 
-export const { addItem } = cartSlice.actions;
+export const { actAddItem, actDeleteItem, actChangeQuality } =
+    cartSlice.actions;
 
 export default cartSlice.reducer;
