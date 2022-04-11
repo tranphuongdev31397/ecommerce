@@ -3,7 +3,7 @@ import { Button, Card, Popover, Rate } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actAddItem, addItem } from 'slices/cartSlice';
+import { actAddItem } from 'slices/cartSlice';
 import './style.scss';
 
 const { Meta } = Card;
