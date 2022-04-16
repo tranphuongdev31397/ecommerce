@@ -1,3 +1,4 @@
+import { checkFirebaseError } from 'common/functions';
 import { initializeApp } from 'firebase/app';
 import {
     GoogleAuthProvider,
@@ -57,8 +58,7 @@ const signInWithGoogle = async () => {
             });
         }
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        return err;
     }
 };
 
@@ -69,8 +69,9 @@ const logInWithEmailAndPassword = async (email, password) => {
 
         await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        let errorCustom = checkFirebaseError(err.message);
+        err.message = errorCustom;
+        return err;
     }
 };
 
@@ -107,4 +108,14 @@ const sendPasswordReset = async (email) => {
 
 const logout = () => {
     signOut(auth);
+};
+
+export {
+    auth,
+    db,
+    signInWithGoogle,
+    logInWithEmailAndPassword,
+    registerWithEmailAndPassword,
+    sendPasswordReset,
+    logout
 };

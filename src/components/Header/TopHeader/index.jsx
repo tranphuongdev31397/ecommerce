@@ -57,7 +57,7 @@ function TopHeader() {
                             <Link to="/checkout">Check out</Link>
                         </div>
                         <div className="p-2 border-r-2 border-gray-100">
-                            Log in
+                            <Link to="/login">Log in</Link>
                         </div>
                     </div>
                 </div>
