@@ -17,3 +17,14 @@ export const randomColor = () => {
     //return hexa code color
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 };
+
+export const checkFirebaseError = (type) => {
+    let errorMessage = 'Not error in firebase';
+    switch (type) {
+        case 'Firebase: Error (auth/user-not-found).':
+            return (errorMessage = 'Email/Password incorrect.');
+
+        default:
+            return errorMessage;
+    }
+};

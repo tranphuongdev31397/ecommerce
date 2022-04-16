@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { coupon } from 'common/data';
+import cartSlice from 'slices/cartSlice';
 const initialState = {
     couponArr: [],
     error: ''
