@@ -17,6 +17,8 @@ import {
     where,
     addDoc
 } from 'firebase/firestore';
+import { actAddCoupon } from 'pages/CheckOut/checkOutSlice';
+import { useDispatch } from 'react-redux';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyC7qJAEhCG5r18MfytjvnRjeILy6xDxBeA',
@@ -110,6 +112,20 @@ const logout = () => {
     signOut(auth);
 };
 
+const getUserFromDb = async (user) => {
+    try {
+        const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+        //Find user in db with quey
+        const docs = await getDocs(q);
+
+        if (docs.docs.length !== 0) {
+            return docs.docs[0].data();
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 export {
     auth,
     db,
@@ -117,5 +133,6 @@ export {
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
     sendPasswordReset,
-    logout
+    logout,
+    getUserFromDb
 };
