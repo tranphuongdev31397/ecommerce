@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import { createRoot } from 'react-dom/client';
+
 import 'antd/dist/antd.min.css';
+
+import 'App.less';
 import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';

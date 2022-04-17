@@ -1,17 +1,17 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
-    auth,
     logInWithEmailAndPassword,
     signInWithGoogle
-} from 'config/firebase/firebase';
+} from 'config/firebase/firebase-function';
+import { auth } from 'config/firebase/firebase';
 import './style.scss';
 import Loader from 'components/Loader';
 
 function LoginPage() {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [errorFirebase, setErrorFirebase] = useState();
     const onFinish = async (values) => {
         const { email, password } = values;
@@ -24,11 +24,9 @@ function LoginPage() {
             setErrorFirebase();
         }
     };
-
+    const Navigate = useNavigate();
     const onFinishFailed = (errorInfo) => {
         setErrorFirebase();
-
-        console.log('Failed:', errorInfo);
     };
 
     useEffect(() => {
@@ -57,6 +55,9 @@ function LoginPage() {
                         onFinishFailed={onFinishFailed}
                     >
                         <p className="form-title">Welcome back</p>
+                        <p>Login with Google</p>
+                        <Button onClick={signInWithGoogle}>GOOGLE</Button>
+                        <p>OR</p>
                         <p>Login with your account</p>
 
                         <p className="font-bold text-red-500 text-center">

@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PhoneFilled } from '@ant-design/icons';
 import DropdownHeader from 'components/Dropdown/DropdownHeader';
 import Flags from 'country-flag-icons/react/3x2';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from 'config/firebase/firebase';
+import { logout } from 'config/firebase/firebase-function';
+import UsersServices from 'services/UsersServices';
+
 function TopHeader() {
+    const [user] = useAuthState(auth);
+    const [currentUser, setCurrentUser] = useState();
+    useEffect(() => {
+        const fetchCurrentUser = async (id) => {
+            try {
+                const docSnap = await UsersServices.getUser(id);
+                setCurrentUser(docSnap.data());
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        if (user) {
+            fetchCurrentUser(user.uid);
+        }
+    }, [user]);
     return (
         <>
             <div className="w-100 border-b-gray-100 border-b-2">
@@ -57,7 +77,16 @@ function TopHeader() {
                             <Link to="/checkout">Check out</Link>
                         </div>
                         <div className="p-2 border-r-2 border-gray-100">
-                            <Link to="/login">Log in</Link>
+                            {!user ? (
+                                <Link to="/login">Log in</Link>
+                            ) : (
+                                <span
+                                    className="cursor-pointer"
+                                    onClick={logout}
+                                >
+                                    Log out
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>
