@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
-    auth,
     logInWithEmailAndPassword,
-    signInWithGoogle,
-    uiConfig
-} from 'config/firebase/firebase';
+    signInWithGoogle
+} from 'config/firebase/firebase-function';
+import { auth } from 'config/firebase/firebase';
 import './style.scss';
 import Loader from 'components/Loader';
 

@@ -4,7 +4,8 @@ import DropdownHeader from 'components/Dropdown/DropdownHeader';
 import Flags from 'country-flag-icons/react/3x2';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { logout, auth, db, getUserFromDb } from 'config/firebase/firebase';
+import { auth } from 'config/firebase/firebase';
+import { logout } from 'config/firebase/firebase-function';
 import UsersServices from 'services/UsersServices';
 
 function TopHeader() {
@@ -14,7 +15,7 @@ function TopHeader() {
         const fetchCurrentUser = async (id) => {
             try {
                 const docSnap = await UsersServices.getUser(id);
-                setCurrentUser(docSnap);
+                setCurrentUser(docSnap.data());
             } catch (err) {
                 console.log(err);
             }
