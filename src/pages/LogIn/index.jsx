@@ -11,7 +11,7 @@ import './style.scss';
 import Loader from 'components/Loader';
 
 function LoginPage() {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [errorFirebase, setErrorFirebase] = useState();
     const onFinish = async (values) => {
         const { email, password } = values;

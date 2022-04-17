@@ -6,6 +6,7 @@ import Shopping from 'pages/Shopping';
 import ProductDetail from 'pages/ProductDetail';
 import CheckOut from 'pages/CheckOut';
 import LoginPage from 'pages/LogIn';
+import RegisterPage from 'pages/Register';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/checkout" element={<CheckOut />} />
                 </Route>
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
             </Routes>
         </Router>
     );

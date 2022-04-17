@@ -11,12 +11,12 @@ class UsersServices {
                 authProvider: user.provider,
                 email: user.email,
                 cart: [],
-                phoneNumber: null,
+                phoneNumber: user?.phoneNumber || null,
                 address: {
-                    city: null,
-                    district: null,
-                    country: null,
-                    addressNumber: null
+                    city: user?.address?.city || null,
+                    district: user?.address?.district || null,
+                    country: user?.address?.country || null,
+                    addressNumber: user?.address?.addressNumber || null
                 }
             });
         } catch (err) {
