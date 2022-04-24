@@ -13,6 +13,16 @@ export const capitalizeString = (string) => {
 
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
+export const stringToPassType = (string) => {
+    if (typeof string !== 'string') return string;
+    else {
+        let stringPassword = '';
+        for (let index = 0; index < string.length; index++) {
+            stringPassword += '*';
+        }
+        return stringPassword;
+    }
+};
 export const randomColor = () => {
     //return hexa code color
     return '#' + Math.floor(Math.random() * 16777215).toString(16);

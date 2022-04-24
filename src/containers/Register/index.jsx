@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'config/firebase/firebase';
 import Loader from 'components/Loader';
+import DoubleCheck from 'components/RegisterForm/DoubleCheck';
 
 const { Step } = Steps;
 
@@ -69,7 +70,7 @@ function RegisterCtn() {
         },
         {
             title: 'Double Check',
-            content: 'Last-content'
+            content: <DoubleCheck />
         }
     ];
 
