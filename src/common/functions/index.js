@@ -19,10 +19,12 @@ export const randomColor = () => {
 };
 
 export const checkFirebaseError = (type) => {
-    let errorMessage = 'Not error in firebase';
+    let errorMessage = 'Error in firebase';
     switch (type) {
         case 'Firebase: Error (auth/user-not-found).':
             return (errorMessage = 'Email/Password incorrect.');
+        case 'Firebase: Error (auth/email-already-in-use).':
+            return (errorMessage = 'Email already in use.');
 
         default:
             return errorMessage;

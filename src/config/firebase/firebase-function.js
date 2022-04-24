@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 
 import { query, getDocs, collection, where } from 'firebase/firestore';
+import { Navigate } from 'react-router-dom';
 import UsersServices from 'services/UsersServices';
 import { auth, db } from './firebase';
 
@@ -27,7 +28,7 @@ const signInWithGoogle = async () => {
         if (docs.docs.length === 0) {
             console.log(user);
             //add  user into db if not found
-            user.provider = 'googleee';
+            user.provider = 'google';
             await UsersServices.addUser(user);
         }
     } catch (err) {
@@ -49,17 +50,18 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 //Register function
-const registerWithEmailAndPassword = async (user) => {
-    const { name, email, password } = user;
+const registerWithEmailAndPassword = async (user, successFunction) => {
+    const { email, password, ...userInfo } = user;
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        const user = res.user;
-
+        const user = { ...res.user, ...userInfo };
         user.provider = 'local';
         await UsersServices.addUser(user);
+        successFunction();
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        let errorCustom = checkFirebaseError(err.message);
+        err.message = errorCustom;
+        return err;
     }
 };
 
