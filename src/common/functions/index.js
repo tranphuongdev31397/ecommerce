@@ -13,7 +13,30 @@ export const capitalizeString = (string) => {
 
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
+export const stringToPassType = (string) => {
+    if (typeof string !== 'string') return string;
+    else {
+        let stringPassword = '';
+        for (let index = 0; index < string.length; index++) {
+            stringPassword += '*';
+        }
+        return stringPassword;
+    }
+};
 export const randomColor = () => {
     //return hexa code color
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
+};
+
+export const checkFirebaseError = (type) => {
+    let errorMessage = 'Error in firebase';
+    switch (type) {
+        case 'Firebase: Error (auth/user-not-found).':
+            return (errorMessage = 'Email/Password incorrect.');
+        case 'Firebase: Error (auth/email-already-in-use).':
+            return (errorMessage = 'Email already in use.');
+
+        default:
+            return errorMessage;
+    }
 };
