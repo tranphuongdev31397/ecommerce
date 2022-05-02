@@ -26,7 +26,6 @@ const signInWithGoogle = async () => {
         //Find user in db with quey
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
-            console.log(user);
             //add  user into db if not found
             user.provider = 'google';
             await UsersServices.addUser(user);
