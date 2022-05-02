@@ -23,8 +23,8 @@ class UsersServices {
             console.log(err);
         }
     };
-    getUser = (id) => {
-        const userDoc = doc(db, 'users', id);
+    getUser = async (id) => {
+        const userDoc = await doc(db, 'users', id);
         return getDoc(userDoc);
     };
 }

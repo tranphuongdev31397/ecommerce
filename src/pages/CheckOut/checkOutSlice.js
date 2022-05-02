@@ -1,9 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { coupon } from 'common/data';
-import cartSlice from 'slices/cartSlice';
 const initialState = {
     couponArr: [],
-    error: ''
+    error: '',
+    paymentInformation: {
+        personal: '',
+        order: {
+            cart: [],
+            couponArr: [],
+            subTotal: null,
+            total: null
+        }
+    }
 };
 
 const checkOutSlice = createSlice({
@@ -45,10 +53,26 @@ const checkOutSlice = createSlice({
             state.couponArr = state.couponArr.filter(
                 (item) => item.id !== payload
             );
+        },
+        actSetPersonalInformation(state, { payload }) {
+            console.log(payload);
+
+            state.paymentInformation = {
+                ...state.paymentInformation,
+                personal: payload
+            };
+        },
+        actSetOrderInformation(state, { payload }) {
+            state.paymentInformation.order = payload;
         }
     }
 });
 
-export const { actAddCoupon, actDeleteCoupon } = checkOutSlice.actions;
+export const {
+    actAddCoupon,
+    actDeleteCoupon,
+    actSetPersonalInformation,
+    actSetOrderInformation
+} = checkOutSlice.actions;
 
 export default checkOutSlice.reducer;

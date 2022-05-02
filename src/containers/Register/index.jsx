@@ -29,6 +29,10 @@ function RegisterCtn() {
     const registerValue = useSelector(
         (state) => state.registerReducer.registerValues
     );
+
+    const initValues = useSelector(
+        (state) => state.registerReducer.registerValues
+    );
     const next = (isSkip = false) => {
         if (current === 0) {
             form.validateFields().then((value) => {
@@ -45,7 +49,6 @@ function RegisterCtn() {
             form.validateFields().then((value) => {
                 form.resetFields();
                 dispatch(actSetRegisterValues({ values: value }));
-                console.log(value);
                 setCurrent(current + 1);
             });
         }
@@ -65,7 +68,11 @@ function RegisterCtn() {
         {
             title: 'Personal Information',
             content: (
-                <PersonalInformationForm form={form} setHasSkip={setHasSkip} />
+                <PersonalInformationForm
+                    form={form}
+                    setHasSkip={setHasSkip}
+                    initValues={initValues}
+                />
             )
         },
         {

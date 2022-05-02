@@ -1,11 +1,14 @@
+import { isDisable } from '@testing-library/user-event/dist/utils';
 import { Form, Input } from 'antd';
 import React, { memo, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
-function PersonalInformationForm({ form, setHasSkip }) {
-    const initValues = useSelector(
-        (state) => state.registerReducer.registerValues
-    );
+function PersonalInformationForm({
+    form,
+    setHasSkip = null,
+    isRegister = true,
+    initValues = null,
+    isDisable = false
+}) {
     const formItemLayout = {
         labelCol: {
             xs: { span: 24 },
@@ -16,14 +19,20 @@ function PersonalInformationForm({ form, setHasSkip }) {
             sm: { span: 16 }
         }
     };
-    useEffect(() => {
-        setHasSkip(true);
 
+    useEffect(() => {
+        if (setHasSkip) {
+            setHasSkip(true);
+        }
         return () => {
-            setHasSkip(false);
+            if (setHasSkip) {
+                setHasSkip(false);
+            }
         };
     }, []);
-    console.log(initValues);
+    useEffect(() => {
+        form.resetFields();
+    }, [initValues]);
     return (
         <Form
             initialValues={initValues}
@@ -42,8 +51,29 @@ function PersonalInformationForm({ form, setHasSkip }) {
                     }
                 ]}
             >
-                <Input addonBefore={['+84']} style={{ width: '100%' }} />
+                <Input
+                    addonBefore={['+84']}
+                    style={{ width: '100%' }}
+                    disabled={isDisable}
+                />
             </Form.Item>
+            {!isRegister ? (
+                <Form.Item
+                    name="name"
+                    label="Your name"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your name!'
+                        }
+                    ]}
+                >
+                    <Input style={{ width: '100%' }} disabled={isDisable} />
+                </Form.Item>
+            ) : (
+                <></>
+            )}
+
             <h4 className="font-bold text-base text-left">Address: </h4>
             <Form.Item
                 name={['address', 'country']}
@@ -55,7 +85,7 @@ function PersonalInformationForm({ form, setHasSkip }) {
                     }
                 ]}
             >
-                <Input style={{ width: '100%' }} />
+                <Input style={{ width: '100%' }} disabled={isDisable} />
             </Form.Item>
             <Form.Item
                 name={['address', 'city']}
@@ -67,7 +97,7 @@ function PersonalInformationForm({ form, setHasSkip }) {
                     }
                 ]}
             >
-                <Input style={{ width: '100%' }} />
+                <Input style={{ width: '100%' }} disabled={isDisable} />
             </Form.Item>
             <Form.Item
                 name={['address', 'district']}
@@ -79,7 +109,7 @@ function PersonalInformationForm({ form, setHasSkip }) {
                     }
                 ]}
             >
-                <Input style={{ width: '100%' }} />
+                <Input style={{ width: '100%' }} disabled={isDisable} />
             </Form.Item>
             <Form.Item
                 name={['address', 'addressNumber']}
@@ -91,7 +121,7 @@ function PersonalInformationForm({ form, setHasSkip }) {
                     }
                 ]}
             >
-                <Input style={{ width: '100%' }} />
+                <Input style={{ width: '100%' }} disabled={isDisable} />
             </Form.Item>
         </Form>
     );
