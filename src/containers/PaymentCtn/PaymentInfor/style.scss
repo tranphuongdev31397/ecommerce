@@ -1,0 +1,13 @@
+#payment__tabs {
+    .ant-tabs-nav .ant-tabs-nav-wrap {
+        margin: 0px !important;
+        width: 100%;
+    }
+    .ant-tabs-tab {
+        width: 50%;
+        justify-content: center;
+    }
+    .ant-tabs-nav-operations {
+        display: none;
+    }
+}

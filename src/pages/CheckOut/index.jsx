@@ -2,7 +2,8 @@ import PageBanner from 'components/PageBanner';
 import { PATH_IMG } from 'constant';
 import CheckOutLeftSide from 'containers/CheckOutLeftSide';
 import CheckOutRightSide from 'containers/CheckOutRightSide';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function CheckOut() {
     return (
