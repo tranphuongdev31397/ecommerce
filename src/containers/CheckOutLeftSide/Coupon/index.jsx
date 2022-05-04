@@ -17,8 +17,6 @@ function Coupon() {
     const onFinishFailed = () => {
         message.error('Submit failed!');
     };
-    console.log(error);
-    console.log(couponArr);
     return (
         <div>
             <div className="my-2 border-2 p-2">

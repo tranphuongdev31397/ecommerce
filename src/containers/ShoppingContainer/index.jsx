@@ -12,7 +12,6 @@ function ShoppingContainer() {
         (state) => state.categoriesReducer.categories
     );
     const stateFromRouter = useLocation();
-    console.log(stateFromRouter);
     const [products, setProducts] = useState();
     const [categoryTab, setCategoryTab] = useState(
         stateFromRouter?.state || 'all'

@@ -7,23 +7,19 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'config/firebase/firebase';
 import { logout } from 'config/firebase/firebase-function';
 import UsersServices from 'services/UsersServices';
+import { useDispatch } from 'react-redux';
+import { actSetCurrentUser } from 'slices/authSlice';
+import { actSetCartUser } from 'slices/cartSlice';
 
 function TopHeader() {
     const [user] = useAuthState(auth);
-    const [currentUser, setCurrentUser] = useState();
-    useEffect(() => {
-        const fetchCurrentUser = async (id) => {
-            try {
-                const docSnap = await UsersServices.getUser(id);
-                setCurrentUser(docSnap.data());
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        if (user) {
-            fetchCurrentUser(user.uid);
-        }
-    }, [user]);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        logout();
+        dispatch(actSetCurrentUser({}));
+        dispatch(actSetCartUser([]));
+    };
     return (
         <>
             <div className="w-100 border-b-gray-100 border-b-2">
@@ -82,7 +78,7 @@ function TopHeader() {
                             ) : (
                                 <span
                                     className="cursor-pointer"
-                                    onClick={logout}
+                                    onClick={handleLogout}
                                 >
                                     Log out
                                 </span>

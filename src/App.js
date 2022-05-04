@@ -7,8 +7,33 @@ import ProductDetail from 'pages/ProductDetail';
 import CheckOut from 'pages/CheckOut';
 import LoginPage from 'pages/LogIn';
 import RegisterPage from 'pages/Register';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from 'config/firebase/firebase';
+import { useEffect, useState } from 'react';
+import UsersServices from 'services/UsersServices';
+import { useDispatch, useSelector } from 'react-redux';
+import { actSetCurrentUser } from 'slices/authSlice';
+import { actSetCartUser } from 'slices/cartSlice';
+import PaymentPage from 'pages/Payment';
 
 function App() {
+    const [user] = useAuthState(auth);
+    const dispatch = useDispatch();
+    const fetchCurrentUser = async (id) => {
+        //Set currentUser cart
+        try {
+            const docSnap = await UsersServices.getUser(id);
+            dispatch(actSetCurrentUser(docSnap.data()));
+            dispatch(actSetCartUser(docSnap.data().cart));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    useEffect(() => {
+        if (user) {
+            fetchCurrentUser(user.uid);
+        }
+    }, [user]);
     return (
         <Router>
             <Routes>
@@ -20,6 +45,7 @@ function App() {
                         element={<ProductDetail />}
                     />
                     <Route path="/checkout" element={<CheckOut />} />
+                    <Route path="/payment" element={<PaymentPage />} />
                 </Route>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />

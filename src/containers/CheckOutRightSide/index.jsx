@@ -1,13 +1,24 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Col, Empty, Row, Tag } from 'antd';
 import { randomColor } from 'common/functions';
-import { actDeleteCoupon } from 'pages/CheckOut/checkOutSlice';
+import {
+    actDeleteCoupon,
+    actSetOrderInformation
+} from 'pages/CheckOut/checkOutSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './style.scss';
 function CheckOutRightSide() {
     const cart = useSelector((state) => state.cartReducer.cart);
     const couponArr = useSelector((state) => state.checkOutReducer.couponArr);
+    const personalInformation = useSelector(
+        (state) => state.checkOutReducer.paymentInformation?.personal
+    );
+    const payment = useSelector(
+        (state) => state.checkOutReducer.paymentInformation
+    );
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const subTotal = cart.reduce((prev, current) => {
         return prev + current.quality * current.price;
@@ -20,6 +31,19 @@ function CheckOutRightSide() {
         (item) => item.discountType === 'deduction'
     )?.discount;
     deduction = deduction === undefined ? 0 : deduction;
+
+    let total = subTotal - subTotal * percent - deduction;
+    const orderResult = {
+        cart,
+        couponArr,
+        total,
+        subTotal
+    };
+    const handleSetOrder = () => {
+        dispatch(actSetOrderInformation(orderResult));
+        navigate('/payment');
+    };
+
     return (
         <div className="flex flex-col justify-center w-full">
             <h2 className="text-xl font-bold text-sky-500">Order Sumary</h2>
@@ -93,7 +117,9 @@ function CheckOutRightSide() {
                                     >
                                         <span className="tag__coupon-content">
                                             {item.discountType === 'percent'
-                                                ? item.discount * 100 + '%'
+                                                ? '-' +
+                                                  item.discount * 100 +
+                                                  '%'
                                                 : item.discountType ===
                                                   'deduction'
                                                 ? '-' + item.discount + '$'
@@ -123,7 +149,7 @@ function CheckOutRightSide() {
                         span={12}
                         className="border-2 border-black p-2 w-full font-bold border-t-0 border-l-0"
                     >
-                        {subTotal - subTotal * percent - deduction}$
+                        {total}$
                     </Col>
                 </Row>
             )}
@@ -131,6 +157,11 @@ function CheckOutRightSide() {
             <Button
                 type="primary"
                 className="bg-sky-500 hover:bg-white hover:text-black"
+                disabled={
+                    !personalInformation ||
+                    (Array.isArray(cart) && cart.length === 0)
+                }
+                onClick={handleSetOrder}
             >
                 Payment
             </Button>
