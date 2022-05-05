@@ -27,9 +27,6 @@ function GridSystem() {
         };
 
         fetchProductInCategory();
-        return () => {
-            setProducts();
-        };
     }, [activeKey]);
 
     if (!Array.isArray(products)) {
