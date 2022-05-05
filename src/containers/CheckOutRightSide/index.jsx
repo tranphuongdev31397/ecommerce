@@ -5,7 +5,7 @@ import {
     actDeleteCoupon,
     actSetOrderInformation
 } from 'pages/CheckOut/checkOutSlice';
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
@@ -18,6 +18,34 @@ function CheckOutRightSide() {
     const payment = useSelector(
         (state) => state.checkOutReducer.paymentInformation
     );
+    const [errPayment, setErrPayment] = useState([]);
+
+    const setValidationPaymentButton = () => {
+        if (
+            cart.length === 0 &&
+            !errPayment.find((i) => i === 'Your cart is empty')
+        ) {
+            setErrPayment((prev) => [...prev, 'Your cart is empty']);
+        } else if (cart.length !== 0) {
+            setErrPayment((prev) =>
+                prev.filter((i) => i !== 'Your cart is empty')
+            );
+        }
+        if (
+            !personalInformation &&
+            !errPayment.find((i) => i === 'Your information not confirm')
+        ) {
+            setErrPayment((prev) => [...prev, 'Your information not confirm']);
+        } else if (personalInformation) {
+            setErrPayment((prev) =>
+                prev.filter((i) => i !== 'Your information not confirm')
+            );
+        }
+    };
+    useLayoutEffect(() => {
+        setValidationPaymentButton();
+    }, [personalInformation, cart]);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const subTotal = cart.reduce((prev, current) => {
@@ -43,7 +71,6 @@ function CheckOutRightSide() {
         dispatch(actSetOrderInformation(orderResult));
         navigate('/payment');
     };
-
     return (
         <div className="flex flex-col justify-center w-full">
             <h2 className="text-xl font-bold text-sky-500">Order Sumary</h2>
@@ -66,7 +93,7 @@ function CheckOutRightSide() {
                     </Col>
                     {cart.map((item, idx) => {
                         return (
-                            <React.Fragment key={item.id} className="w-full">
+                            <React.Fragment key={item.id}>
                                 <Col
                                     className="border-2 border-black border-t-0 p-2 w-full"
                                     span={12}
@@ -153,14 +180,15 @@ function CheckOutRightSide() {
                     </Col>
                 </Row>
             )}
-
+            {errPayment.map((err, idx) => {
+                return (
+                    <p className="text-red-500 italic font-semibold">{err}</p>
+                );
+            })}
             <Button
                 type="primary"
                 className="bg-sky-500 hover:bg-white hover:text-black"
-                disabled={
-                    !personalInformation ||
-                    (Array.isArray(cart) && cart.length === 0)
-                }
+                disabled={errPayment.length !== 0}
                 onClick={handleSetOrder}
             >
                 Payment
