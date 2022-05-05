@@ -1,3 +1,6 @@
+import React from 'react';
+import { store } from 'store';
+
 export const capitalizeString = (string) => {
     //Uppercase frist letter
     if (typeof string !== 'string') return string;

@@ -52,11 +52,17 @@ const cartSlice = createSlice({
                     state.cart[idx].quality = state.cart[idx].quality - 1;
                 }
             }
-        }
+        },
+        actResetCart: () => initialState
     }
 });
 
-export const { actAddItem, actDeleteItem, actChangeQuality, actSetCartUser } =
-    cartSlice.actions;
+export const {
+    actAddItem,
+    actDeleteItem,
+    actChangeQuality,
+    actSetCartUser,
+    actResetCart
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
