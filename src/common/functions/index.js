@@ -43,5 +43,3 @@ export const checkFirebaseError = (type) => {
             return errorMessage;
     }
 };
-
-export const clearInfoShopping = (dispatch) => {};

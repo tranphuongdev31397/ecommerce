@@ -33,12 +33,19 @@ function CheckOutRightSide() {
         }
         if (
             !personalInformation &&
-            !errPayment.find((i) => i === 'Your information not confirm')
+            !errPayment.find(
+                (i) => i === 'Your information has not been confirmed'
+            )
         ) {
-            setErrPayment((prev) => [...prev, 'Your information not confirm']);
+            setErrPayment((prev) => [
+                ...prev,
+                'Your information has not been confirmed'
+            ]);
         } else if (personalInformation) {
             setErrPayment((prev) =>
-                prev.filter((i) => i !== 'Your information not confirm')
+                prev.filter(
+                    (i) => i !== 'Your information has not been confirmed'
+                )
             );
         }
     };
