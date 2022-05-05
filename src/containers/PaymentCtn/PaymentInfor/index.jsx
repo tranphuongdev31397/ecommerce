@@ -1,11 +1,6 @@
 import React from 'react';
 import { Tabs } from 'antd';
-import {
-    AppleOutlined,
-    AndroidOutlined,
-    ShoppingCartOutlined,
-    InfoCircleOutlined
-} from '@ant-design/icons';
+import { ShoppingCartOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import './style.scss';
 import Order from './Order';
 import InforShip from './InforShip';
@@ -17,9 +12,9 @@ function PaymentInfor() {
             <TabPane
                 className="p-4"
                 tab={
-                    <span className="w-1/2">
+                    <span className="w-1/2 icon-center">
                         <ShoppingCartOutlined />
-                        Order
+                        ORDER
                     </span>
                 }
                 key="1"
@@ -29,9 +24,9 @@ function PaymentInfor() {
             <TabPane
                 className="p-4"
                 tab={
-                    <span>
+                    <span className="icon-center">
                         <InfoCircleOutlined />
-                        Information Shipping
+                        INFORMATION SHIPPING
                     </span>
                 }
                 key="2"

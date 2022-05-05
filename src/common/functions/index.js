@@ -1,3 +1,6 @@
+import React from 'react';
+import { store } from 'store';
+
 export const capitalizeString = (string) => {
     //Uppercase frist letter
     if (typeof string !== 'string') return string;
@@ -40,3 +43,5 @@ export const checkFirebaseError = (type) => {
             return errorMessage;
     }
 };
+
+export const clearInfoShopping = (dispatch) => {};

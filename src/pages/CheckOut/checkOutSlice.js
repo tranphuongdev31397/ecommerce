@@ -64,7 +64,8 @@ const checkOutSlice = createSlice({
         },
         actSetOrderInformation(state, { payload }) {
             state.paymentInformation.order = payload;
-        }
+        },
+        actResetCheckOutState: () => initialState
     }
 });
 
@@ -72,7 +73,8 @@ export const {
     actAddCoupon,
     actDeleteCoupon,
     actSetPersonalInformation,
-    actSetOrderInformation
+    actSetOrderInformation,
+    actResetCheckOutState
 } = checkOutSlice.actions;
 
 export default checkOutSlice.reducer;
