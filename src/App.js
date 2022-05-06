@@ -7,13 +7,6 @@ import ProductDetail from 'pages/ProductDetail';
 import CheckOut from 'pages/CheckOut';
 import LoginPage from 'pages/LogIn';
 import RegisterPage from 'pages/Register';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from 'config/firebase/firebase';
-import { useEffect, useState } from 'react';
-import UsersServices from 'services/UsersServices';
-import { useDispatch, useSelector } from 'react-redux';
-import { actSetCurrentUser } from 'slices/authSlice';
-import { actSetCartUser } from 'slices/cartSlice';
 import PaymentPage from 'pages/Payment';
 
 function App() {
