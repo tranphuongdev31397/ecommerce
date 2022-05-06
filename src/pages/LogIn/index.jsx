@@ -9,6 +9,7 @@ import {
 import { auth } from 'config/firebase/firebase';
 import './style.scss';
 import Loader from 'components/Loader';
+import { PATH_IMG } from 'constant';
 
 function LoginPage() {
     const [user, loading] = useAuthState(auth);
@@ -43,8 +44,9 @@ function LoginPage() {
                 <div className="login-box">
                     <div className="illustration-wrapper">
                         <img
-                            src="https://mixkit.imgix.net/art/preview/mixkit-left-handed-man-sitting-at-a-table-writing-in-a-notebook-27-original-large.png?q=80&auto=format%2Ccompress&h=700"
+                            src={PATH_IMG + 'loginImg.jpg'}
                             alt="Login"
+                            className="w-full pr-10"
                         />
                     </div>
 
