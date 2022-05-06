@@ -10,10 +10,15 @@ import { auth } from 'config/firebase/firebase';
 import './style.scss';
 import Loader from 'components/Loader';
 import { PATH_IMG } from 'constant';
+import { useDispatch } from 'react-redux';
+import UsersServices from 'services/UsersServices';
+import { actSetCurrentUser } from 'slices/authSlice';
+import { actSetCartUser } from 'slices/cartSlice';
 
 function LoginPage() {
     const [user, loading] = useAuthState(auth);
     const [errorFirebase, setErrorFirebase] = useState();
+    const dispatch = useDispatch();
     const onFinish = async (values) => {
         const { email, password } = values;
         const response = await logInWithEmailAndPassword(email, password);
@@ -29,13 +34,26 @@ function LoginPage() {
     const onFinishFailed = (errorInfo) => {
         setErrorFirebase();
     };
-
+    const fetchCurrentUser = async (id) => {
+        //Set currentUser cart
+        try {
+            const docSnap = await UsersServices.getUser(id);
+            dispatch(actSetCurrentUser(docSnap.data()));
+            dispatch(actSetCartUser(docSnap.data().cart));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    console.log(user);
     useEffect(() => {
         if (loading) {
             // maybe trigger a loading screen
             return <Loader />;
         }
-        if (user) Navigate('/');
+        if (user) {
+            fetchCurrentUser(user.uid);
+            Navigate('/');
+        }
     }, [user, loading]);
 
     return (

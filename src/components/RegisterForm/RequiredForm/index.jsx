@@ -30,7 +30,11 @@ function RequiredForm({ form }) {
                 label="Password"
                 name="password"
                 rules={[
-                    { required: true, message: 'Please input your password!' }
+                    { required: true, message: 'Please input your password!' },
+                    {
+                        min: 6,
+                        message: 'Password must be at least 6 characters '
+                    }
                 ]}
                 hasFeedback
             >
@@ -46,6 +50,7 @@ function RequiredForm({ form }) {
                         required: true,
                         message: 'Please confirm your password!'
                     },
+
                     ({ getFieldValue }) => ({
                         validator(_, value) {
                             if (!value || getFieldValue('password') === value) {
