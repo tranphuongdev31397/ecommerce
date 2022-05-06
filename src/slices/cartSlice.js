@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getAuth } from 'firebase/auth';
+import UsersServices from 'services/UsersServices';
 
 const initialState = {
     cart: [
@@ -18,7 +20,7 @@ const initialState = {
         // }
     ]
 };
-
+const user = getAuth();
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -36,9 +38,19 @@ const cartSlice = createSlice({
                 const item = { ...action.payload, quality: 1 };
                 state.cart.push(item);
             }
+            if (user) {
+                const cartUpdate = state.cart;
+
+                UsersServices.updateCart(user.currentUser.uid, cartUpdate);
+            }
         },
         actDeleteItem(state, { payload }) {
             state.cart = state.cart.filter((item) => item.id !== payload);
+            if (user) {
+                const cartUpdate = state.cart;
+
+                UsersServices.updateCart(user.currentUser.uid, cartUpdate);
+            }
         },
         actChangeQuality(state, { payload }) {
             const { id, action } = payload;
@@ -52,8 +64,21 @@ const cartSlice = createSlice({
                     state.cart[idx].quality = state.cart[idx].quality - 1;
                 }
             }
+            if (user) {
+                const cartUpdate = state.cart;
+
+                UsersServices.updateCart(user.currentUser.uid, cartUpdate);
+            }
         },
-        actResetCart: () => initialState
+        actResetCart: () => {
+            if (user) {
+                UsersServices.updateCart(
+                    user.currentUser.uid,
+                    initialState.cart
+                );
+            }
+            return initialState;
+        }
     }
 });
 

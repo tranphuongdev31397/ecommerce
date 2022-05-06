@@ -44,7 +44,6 @@ function LoginPage() {
             console.log(err);
         }
     };
-    console.log(user);
     useEffect(() => {
         if (loading) {
             // maybe trigger a loading screen

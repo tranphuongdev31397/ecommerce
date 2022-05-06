@@ -9,7 +9,6 @@ import {
 } from 'firebase/auth';
 
 import { query, getDocs, collection, where } from 'firebase/firestore';
-import { Navigate } from 'react-router-dom';
 import UsersServices from 'services/UsersServices';
 import { auth, db } from './firebase';
 

@@ -1,5 +1,5 @@
 import { db } from 'config/firebase/firebase';
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 const userCollectionRef = collection(db, 'users');
 class UsersServices {
@@ -26,6 +26,11 @@ class UsersServices {
     getUser = async (id) => {
         const userDoc = await doc(db, 'users', id);
         return getDoc(userDoc);
+    };
+    updateCart = async (id, cartUpdate) => {
+        updateDoc(doc(db, 'users', id), {
+            cart: cartUpdate
+        });
     };
 }
 
