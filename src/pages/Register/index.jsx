@@ -1,5 +1,6 @@
 import RegisterCtn from 'containers/Register';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function RegisterPage() {
     return (
@@ -9,6 +10,11 @@ function RegisterPage() {
         >
             <div>
                 <RegisterCtn />
+            </div>
+            <div className="absolute top-4 left-4">
+                <Link to="/" className="uppercase text-black text-lg">
+                    Back to Home
+                </Link>
             </div>
         </div>
     );

@@ -37,14 +37,7 @@ function CheckOutLeftSide() {
             <Panel header="Have a Coupon" key="1">
                 <Coupon />
             </Panel>
-            {Object.keys(currentUser).length === 0 &&
-            currentUser.constructor === Object ? (
-                <Panel header="Login" key="2" className="mx-auto ">
-                    <LoginForm />
-                </Panel>
-            ) : (
-                ''
-            )}
+
             <Panel header="Shipping Information" key="3">
                 {Object.keys(currentUser).length === 0 &&
                 currentUser.constructor === Object ? (

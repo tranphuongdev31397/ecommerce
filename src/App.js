@@ -17,23 +17,6 @@ import { actSetCartUser } from 'slices/cartSlice';
 import PaymentPage from 'pages/Payment';
 
 function App() {
-    const [user] = useAuthState(auth);
-    const dispatch = useDispatch();
-    const fetchCurrentUser = async (id) => {
-        //Set currentUser cart
-        try {
-            const docSnap = await UsersServices.getUser(id);
-            dispatch(actSetCurrentUser(docSnap.data()));
-            dispatch(actSetCartUser(docSnap.data().cart));
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    useEffect(() => {
-        if (user) {
-            fetchCurrentUser(user.uid);
-        }
-    }, [user]);
     return (
         <Router>
             <Routes>
