@@ -1,7 +1,6 @@
 import { db } from 'config/firebase/firebase';
 import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
-const userCollectionRef = collection(db, 'users');
 class UsersServices {
     addUser = async (user) => {
         try {
@@ -28,8 +27,15 @@ class UsersServices {
         return getDoc(userDoc);
     };
     updateCart = async (id, cartUpdate) => {
-        updateDoc(doc(db, 'users', id), {
+        await updateDoc(doc(db, 'users', id), {
             cart: cartUpdate
+        });
+    };
+    updatePersonalInfo = async (id, userInfo) => {
+        await updateDoc(doc(db, 'users', id), {
+            name: userInfo.name,
+            phoneNumber: userInfo.phoneNumber,
+            address: userInfo.address
         });
     };
 }

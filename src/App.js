@@ -8,6 +8,7 @@ import CheckOut from 'pages/CheckOut';
 import LoginPage from 'pages/LogIn';
 import RegisterPage from 'pages/Register';
 import PaymentPage from 'pages/Payment';
+import MyAccount from 'pages/MyAccount';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     />
                     <Route path="/checkout" element={<CheckOut />} />
                     <Route path="/payment" element={<PaymentPage />} />
+                    <Route path="/my-account" element={<MyAccount />} />
                 </Route>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
