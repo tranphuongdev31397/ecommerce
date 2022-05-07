@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Steps, Button, message } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import './style.scss';
@@ -6,11 +6,10 @@ import RequiredForm from 'components/RegisterForm/RequiredForm';
 import PersonalInformationForm from 'components/RegisterForm/PersonalInforForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { actSetRegisterValues } from 'pages/Register/registerSlice';
-import { registerWithEmailAndPassword } from 'config/firebase/firebase-function';
-import { useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from 'config/firebase/firebase';
-import Loader from 'components/Loader';
+import {
+    logout,
+    registerWithEmailAndPassword
+} from 'config/firebase/firebase-function';
 import DoubleCheck from 'components/RegisterForm/DoubleCheck';
 
 const { Step } = Steps;
@@ -18,12 +17,9 @@ const { Step } = Steps;
 function RegisterCtn() {
     const [current, setCurrent] = React.useState(0);
     const [hasSkip, setHasSkip] = React.useState(false);
-    const [user, loading] = useAuthState(auth);
-
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const handleSuccessFunction = () => {
-        navigate('/');
+        logout();
         dispatch(actSetRegisterValues({ isReset: true }));
     };
     const registerValue = useSelector(
