@@ -1,8 +1,27 @@
+import { notification } from 'antd';
+import Loader from 'components/Loader';
+import { auth } from 'config/firebase/firebase';
 import RegisterCtn from 'containers/Register';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
+    const navigate = useNavigate();
+    const [user, loading] = useAuthState(auth);
+    useEffect(() => {
+        if (loading) {
+            // maybe trigger a loading screen
+            return <Loader />;
+        } else if (user) {
+            notification.warn({
+                message: 'Please log out if you want to register a new account',
+                placement: 'bottomRight'
+            });
+            navigate('/');
+        }
+    }, [user, loading]);
+
     return (
         <div
             style={{ background: '#d9edff', width: '100vw', height: '100vh' }}
