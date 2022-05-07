@@ -5,8 +5,8 @@ import CartBox from './CartBox';
 import { useSelector } from 'react-redux';
 
 function MiddleHeader() {
-    const { Search } = Input;
-    const onSearch = (value) => console.log(value);
+    // const { Search } = Input;
+    // const onSearch = (value) => console.log(value);
 
     const cart = useSelector((state) => state.cartReducer.cart);
     return (
@@ -21,7 +21,7 @@ function MiddleHeader() {
                         <p className="uppercase">Your Shopping Partner</p>
                     </div>
                 </div>
-                <div className="header__search w-1/3">
+                {/* <div className="header__search w-1/3">
                     <Space direction="vertical" className="w-full">
                         <Search
                             className="w-full"
@@ -30,7 +30,7 @@ function MiddleHeader() {
                             enterButton
                         />
                     </Space>
-                </div>
+                </div> */}
                 <div className="header__cart flex flex-col w-fit items-center gap-2">
                     {/* Cart */}
                     <Popover content={<CartBox />}>

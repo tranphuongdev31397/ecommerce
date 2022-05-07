@@ -7,13 +7,13 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 function MenuTab() {
     let currentTab = [
-        'home',
-        'page',
-        {
-            category: 'blogs',
-            menuCategory: ['women blog', 'men blog', 'technology blog']
-        },
-        'contact'
+        'home'
+        // 'page',
+        // {
+        //     category: 'blogs',
+        //     menuCategory: ['women blog', 'men blog', 'technology blog']
+        // },
+        // 'contact'
     ];
     const [tabs, setTabs] = useState(null);
     const [caterogies, setCaterogies] = useState();
