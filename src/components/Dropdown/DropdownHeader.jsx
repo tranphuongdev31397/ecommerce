@@ -33,7 +33,7 @@ function DropdownHeader({ menuArr, dropdownTitle }) {
         </Menu>
     );
     return (
-        <Dropdown overlay={menu} trigger={['click', 'hover']}>
+        <Dropdown overlay={menu} trigger={['hover']}>
             <a
                 className="ant-dropdown-link justify-center items-center flex"
                 onClick={(e) => e.preventDefault()}

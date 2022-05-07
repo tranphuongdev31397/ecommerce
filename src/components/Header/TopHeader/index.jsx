@@ -29,15 +29,15 @@ function TopHeader() {
                             <DropdownHeader
                                 menuArr={[
                                     {
-                                        title: 'VIE',
-                                        icon: (
-                                            <Flags.VN className="mr-2 ant-dropdown-menu-item-icon w-3" />
-                                        )
-                                    },
-                                    {
                                         title: 'ENG',
                                         icon: (
                                             <Flags.US className="mr-2 ant-dropdown-menu-item-icon w-3" />
+                                        )
+                                    },
+                                    {
+                                        title: 'VIE',
+                                        icon: (
+                                            <Flags.VN className="mr-2 ant-dropdown-menu-item-icon w-3" />
                                         )
                                     }
                                 ]}
@@ -61,17 +61,24 @@ function TopHeader() {
 
                     <div className="flex">
                         <div className="p-2 border-r-2 border-gray-100">
-                            My Account
+                            {user ? (
+                                <Link to="/my-account">My Account</Link>
+                            ) : (
+                                <></>
+                            )}
                         </div>
-                        <div className="p-2 border-r-2 border-gray-100">
-                            Wishlist
-                        </div>
-                        <div className="p-2 border-r-2 border-gray-100">
-                            My Cart
-                        </div>
+
                         <div className="p-2 border-r-2 border-gray-100">
                             <Link to="/checkout">Check out</Link>
                         </div>
+
+                        {!user ? (
+                            <div className="p-2 border-r-2 border-gray-100">
+                                <Link to="/register">Register</Link>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                         <div className="p-2 border-r-2 border-gray-100">
                             {!user ? (
                                 <Link to="/login">Log in</Link>
