@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { PhoneFilled } from '@ant-design/icons';
 import DropdownHeader from 'components/Dropdown/DropdownHeader';
 import Flags from 'country-flag-icons/react/3x2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'config/firebase/firebase';
 import { logout } from 'config/firebase/firebase-function';
-import UsersServices from 'services/UsersServices';
 import { useDispatch } from 'react-redux';
 import { actSetCurrentUser } from 'slices/authSlice';
 import { actSetCartUser } from 'slices/cartSlice';
@@ -14,11 +13,12 @@ import { actSetCartUser } from 'slices/cartSlice';
 function TopHeader() {
     const [user] = useAuthState(auth);
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const handleLogout = () => {
         logout();
         dispatch(actSetCurrentUser({}));
         dispatch(actSetCartUser([]));
+        navigate('/');
     };
     return (
         <>
