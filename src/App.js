@@ -9,6 +9,7 @@ import LoginPage from 'pages/LogIn';
 import RegisterPage from 'pages/Register';
 import PaymentPage from 'pages/Payment';
 import MyAccount from 'pages/MyAccount';
+import PageNotFound from 'components/PageNotFound';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                 </Route>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </Router>
     );
