@@ -38,9 +38,8 @@ const cartSlice = createSlice({
                 const item = { ...action.payload, quality: 1 };
                 state.cart.push(item);
             }
-            if (user) {
+            if (user.currentUser) {
                 const cartUpdate = state.cart;
-
                 UsersServices.updateCart(user.currentUser.uid, cartUpdate);
             }
         },
