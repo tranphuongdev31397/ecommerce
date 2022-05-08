@@ -45,7 +45,7 @@ const cartSlice = createSlice({
         },
         actDeleteItem(state, { payload }) {
             state.cart = state.cart.filter((item) => item.id !== payload);
-            if (user) {
+            if (user.currentUser) {
                 const cartUpdate = state.cart;
 
                 UsersServices.updateCart(user.currentUser.uid, cartUpdate);
@@ -63,14 +63,14 @@ const cartSlice = createSlice({
                     state.cart[idx].quality = state.cart[idx].quality - 1;
                 }
             }
-            if (user) {
+            if (user.currentUser) {
                 const cartUpdate = state.cart;
 
                 UsersServices.updateCart(user.currentUser.uid, cartUpdate);
             }
         },
         actResetCart: () => {
-            if (user) {
+            if (user.currentUser) {
                 UsersServices.updateCart(
                     user.currentUser.uid,
                     initialState.cart
