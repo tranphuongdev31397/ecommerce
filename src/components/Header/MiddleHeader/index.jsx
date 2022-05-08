@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Badge, Input, Popover, Space } from 'antd';
 import CartBox from './CartBox';
 import { useSelector } from 'react-redux';
+import Logo from 'components/Logo';
 
 function MiddleHeader() {
     // const { Search } = Input;
@@ -12,15 +13,7 @@ function MiddleHeader() {
     return (
         <>
             <div className="flex justify-between container mx-auto items-center p-4">
-                <div className="header__logo flex items-center">
-                    {/* LOGO HERE */}
-                    <ShoppingFilled className="text-5xl text-sky-500 mr-2" />
-                    <div>
-                        <span className="text-sky-500 text-2xl">MP</span>
-                        <span className="text-2xl">Shopping</span>
-                        <p className="uppercase">Your Shopping Partner</p>
-                    </div>
-                </div>
+                <Logo />
                 {/* <div className="header__search w-1/3">
                     <Space direction="vertical" className="w-full">
                         <Search
