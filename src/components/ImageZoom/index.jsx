@@ -16,11 +16,11 @@ function ImageZoom({ image }) {
         setImgPosition(`${x}% ${y}%`);
     };
     return (
-        <figure className="imageZoom z-1 relative w-full h-full cursor-zoom-in">
+        <figure className="imageZoom z-1 relative w-full h-auto cursor-zoom-in">
             <img
                 src={image}
                 alt="productImg"
-                className="object-fit object-center w-full h-full"
+                className="object-contain object-center w-full h-auto"
                 onMouseOver={() => setZoomShow(true)}
                 onMouseOut={() => setZoomShow(false)}
                 onMouseMove={handleMouseMove}
