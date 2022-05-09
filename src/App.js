@@ -10,9 +10,29 @@ import RegisterPage from 'pages/Register';
 import PaymentPage from 'pages/Payment';
 import MyAccount from 'pages/MyAccount';
 import PageNotFound from 'components/PageNotFound';
+import { useEffect, useState } from 'react';
+import NotSupport from 'components/BreakPoint/NotSupport';
 
 function App() {
-    return (
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    const updateDimensions = () => {
+        //Get breakpoint init
+        const width = window.innerWidth;
+
+        setWindowWidth(width);
+    };
+    useEffect(() => {
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+        return () => {
+            window.removeEventListener('resize', updateDimensions);
+        };
+    }, [windowWidth]);
+
+    return windowWidth <= 768 ? (
+        <NotSupport />
+    ) : (
         <Router>
             <Routes>
                 <Route path="/" element={<ClientLayout />}>
