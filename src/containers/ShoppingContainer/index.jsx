@@ -3,11 +3,13 @@ import { productApi } from 'apis/productApi';
 import { capitalizeString } from 'common/functions';
 import CardItem from 'components/CardItem';
 import Loader from 'components/Loader';
+import useWindowWidth from 'hooks/useWindowWidth';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 function ShoppingContainer() {
+    const windowWidth = useWindowWidth();
     const categories = useSelector(
         (state) => state.categoriesReducer.categories
     );
@@ -39,14 +41,17 @@ function ShoppingContainer() {
     }
 
     return (
-        <div className="flex flex-auto flex-row justify-start">
-            <div className="shopping__leftSide flex flex-column">
-                <div className="shopping__item">
+        <div className="flex  flex-col md:flex-row justify-start w-full">
+            <div className="shopping__leftSide flex flex-column w-full md:w-1/4">
+                <div className="shopping__item w-full">
                     <div className="item__title border-b-sky-500 border-b-2 text-center p-4 font-bold text-xl">
                         Categories
                     </div>
-                    <div className="item__content py-4">
+                    <div className="item__content py-4 w-full">
                         <Menu
+                            mode={
+                                windowWidth >= 768 ? 'vertical' : 'horizontal'
+                            }
                             defaultSelectedKeys={
                                 stateFromRouter?.state || 'all'
                             }
@@ -76,14 +81,20 @@ function ShoppingContainer() {
                     </div>
                 </div>
             </div>
-            <div className="shopping__rightSide p-10">
+            <div className="shopping__rightSide p-10 w-full md:w-3/4">
                 {/* Tool here */}
                 <div className="shopping__products">
                     <Row gutter={[16, 16]}>
                         {Array.isArray(products) &&
                             products.map((item, idx) => {
                                 return (
-                                    <Col span={6} key={item.id}>
+                                    <Col
+                                        xs={24}
+                                        sm={12}
+                                        lg={8}
+                                        xl={6}
+                                        key={item.id}
+                                    >
                                         <CardItem item={item} />
                                     </Col>
                                 );
