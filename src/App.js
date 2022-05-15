@@ -14,26 +14,6 @@ import { useEffect, useState } from 'react';
 import NotSupport from 'components/BreakPoint/NotSupport';
 
 function App() {
-    const [windowWidth, setWindowWidth] = useState(0);
-
-    const updateDimensions = () => {
-        //Get breakpoint init
-        const width = window.innerWidth;
-
-        setWindowWidth(width);
-    };
-    useEffect(() => {
-        updateDimensions();
-        window.addEventListener('resize', updateDimensions);
-        return () => {
-            window.removeEventListener('resize', updateDimensions);
-        };
-    }, [windowWidth]);
-
-    // return windowWidth <= 768 ? (
-    //     <NotSupport />
-    // ) :
-
     return (
         <Router>
             <Routes>
