@@ -13,7 +13,9 @@ function MiddleHeader() {
     return (
         <>
             <div className="flex justify-between container mx-auto items-center p-4">
-                <Logo />
+                <div className="w-content">
+                    <Logo />
+                </div>
                 {/* <div className="header__search w-1/3">
                     <Space direction="vertical" className="w-full">
                         <Search
@@ -24,7 +26,7 @@ function MiddleHeader() {
                         />
                     </Space>
                 </div> */}
-                <div className="header__cart flex flex-col w-fit items-center gap-2">
+                <div className="header__cart flex flex-col w-fit items-center gap-2 mr-2 sm:mr-0">
                     {/* Cart */}
                     <Popover content={<CartBox />}>
                         <Badge
@@ -32,10 +34,12 @@ function MiddleHeader() {
                             showZero
                             color="rgb(14 165 233 / 1)"
                         >
-                            <ShoppingCartOutlined className="text-sky-500 text-4xl" />
+                            <ShoppingCartOutlined className="text-sky-500 text-3xl sm:text-4xl" />
                         </Badge>
                     </Popover>
-                    <span className="uppercase">Shopping Cart</span>
+                    <span className="uppercase hidden sm:block">
+                        Shopping Cart
+                    </span>
                 </div>
             </div>
         </>

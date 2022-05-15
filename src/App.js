@@ -30,9 +30,11 @@ function App() {
         };
     }, [windowWidth]);
 
-    return windowWidth <= 768 ? (
-        <NotSupport />
-    ) : (
+    // return windowWidth <= 768 ? (
+    //     <NotSupport />
+    // ) :
+
+    return (
         <Router>
             <Routes>
                 <Route path="/" element={<ClientLayout />}>

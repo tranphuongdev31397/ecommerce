@@ -5,10 +5,10 @@ function Logo() {
     return (
         <div className="logo flex items-center">
             {/* LOGO HERE */}
-            <ShoppingFilled className="text-5xl text-sky-500 mr-2" />
+            <ShoppingFilled className="text-4xl sm:text-5xl text-sky-500 mr-2" />
             <div>
-                <span className="text-sky-500 text-2xl">MP</span>
-                <span className="text-2xl">Shopping</span>
+                <span className="text-sky-500 text-xl sm:text-2xl">MP</span>
+                <span className="text-xl sm:text-2xl">Shopping</span>
                 <p className="uppercase">Your Shopping Partner</p>
             </div>
         </div>

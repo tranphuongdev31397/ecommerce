@@ -9,6 +9,7 @@ import { logout } from 'config/firebase/firebase-function';
 import { useDispatch } from 'react-redux';
 import { actSetCurrentUser } from 'slices/authSlice';
 import { actSetCartUser } from 'slices/cartSlice';
+import MobileMenu from 'components/MobileMenu';
 
 function TopHeader() {
     const [user] = useAuthState(auth);
@@ -24,7 +25,7 @@ function TopHeader() {
         <>
             <div className="w-100 border-b-gray-100 border-b-2">
                 <div className="container mx-auto flex justify-between">
-                    <div className="flex">
+                    <div className="flex justify-center items-center">
                         <div className="p-2 border-r-2 border-gray-100">
                             <DropdownHeader
                                 menuArr={[
@@ -59,7 +60,7 @@ function TopHeader() {
                         </div>
                     </div>
 
-                    <div className="flex">
+                    <div className="hidden sm:flex">
                         <div className="p-2 border-r-2 border-gray-100">
                             {user ? (
                                 <Link to="/my-account">My Account</Link>
@@ -91,6 +92,9 @@ function TopHeader() {
                                 </span>
                             )}
                         </div>
+                    </div>
+                    <div className="sm:hidden h-full p-2">
+                        <MobileMenu user={user} onLogOut={handleLogout} />
                     </div>
                 </div>
             </div>
