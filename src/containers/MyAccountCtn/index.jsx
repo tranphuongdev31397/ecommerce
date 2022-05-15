@@ -28,7 +28,7 @@ function MyAccountCtn() {
         });
     };
     return (
-        <div className="px-20 py-10 my-10 border-dashed border-2 rounded-lg shadow-md">
+        <div className="px-20 py-10 my-10 border-dashed border-2 rounded-lg shadow-md mx-10">
             <PersonalInforForm
                 form={form}
                 isRegister={false}

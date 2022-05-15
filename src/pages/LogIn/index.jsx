@@ -58,7 +58,7 @@ function LoginPage() {
     return (
         <div className="relative">
             <div className="login-page">
-                <div className="login-box">
+                <div className="login-box mx-10">
                     <div className="illustration-wrapper">
                         <img
                             src={PATH_IMG + 'loginImg.jpg'}
