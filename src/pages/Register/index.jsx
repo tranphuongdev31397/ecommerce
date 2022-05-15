@@ -25,9 +25,9 @@ function RegisterPage() {
     return (
         <div
             style={{ background: '#d9edff', width: '100vw', height: '100vh' }}
-            className="flex justify-center items-center"
+            className="flex justify-center items-center overflow-hidden"
         >
-            <div>
+            <div className="my-10 mx-4">
                 <RegisterCtn />
             </div>
             <div className="absolute top-4 left-4">

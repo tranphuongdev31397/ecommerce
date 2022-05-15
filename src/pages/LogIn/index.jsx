@@ -63,7 +63,7 @@ function LoginPage() {
                         <img
                             src={PATH_IMG + 'loginImg.jpg'}
                             alt="Login"
-                            className="w-full pr-10"
+                            className="w-full"
                         />
                     </div>
 
@@ -115,10 +115,6 @@ function LoginPage() {
                                 placeholder="Password"
                                 size="large"
                             />
-                        </Form.Item>
-
-                        <Form.Item name="remember" valuePropName="checked">
-                            <Checkbox>Remember me</Checkbox>
                         </Form.Item>
 
                         <Form.Item>
