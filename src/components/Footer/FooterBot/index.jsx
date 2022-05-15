@@ -2,7 +2,7 @@ import React from 'react';
 
 function FooterBot() {
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-between mx-10 sm:mx-0">
             <div className="font-bold">
                 Developed by{' '}
                 <span className="text-sky-500">Phuong, Tran Minh</span>

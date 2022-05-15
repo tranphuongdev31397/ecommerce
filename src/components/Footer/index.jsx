@@ -5,7 +5,7 @@ import FooterTop from './FooterTop';
 function Footer() {
     return (
         <footer className="bg-black text-white footer">
-            <section className="footer__top py-4 container mx-auto">
+            <section className="footer__top py-4 container mx-auto ">
                 <FooterTop />
             </section>
             <hr className="border-t mx-6" />

@@ -4,8 +4,8 @@ import React from 'react';
 
 function FooterTop() {
     return (
-        <div className="flex justify-between">
-            <div className="w-1/3">
+        <div className="flex flex-col sm:flex-row justify-between mx-10 sm:mx-0 gap-4">
+            <div className="w-full sm:w-1/3">
                 <Logo />
 
                 <p className="my-4">
