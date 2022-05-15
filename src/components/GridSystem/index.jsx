@@ -49,7 +49,10 @@ function GridSystem() {
                         products.map((item, idx) => {
                             return (
                                 <Col
-                                    span={6}
+                                    xs={24}
+                                    sm={12}
+                                    md={8}
+                                    lg={6}
                                     key={item?.id || idx}
                                     className="w-full"
                                 >
