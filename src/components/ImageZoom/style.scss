@@ -10,7 +10,9 @@
 }
 @media screen and (max-width: 639.8px) {
     .imageZoom {
+        cursor: default;
         & .imageZoom__box {
+            display: none;
             left: 50%;
             pointer-events: none;
         }
