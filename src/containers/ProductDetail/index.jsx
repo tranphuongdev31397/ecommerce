@@ -29,11 +29,11 @@ function ProductDetailCtn() {
     }
     return (
         <div className="productDetail">
-            <div className="productDetail__container flex flex-auto productDetail mx-20 justify-around lg:flex-row md:flex-col items-center gap-4">
-                <div className="productDetail__image md:w-1/2 lg:w-1/3 z-1">
+            <div className="productDetail__container flex flex-auto productDetail mx-10 sm:mx-0 justify-around sm:flex-row flex-col items-center gap-4">
+                <div className="productDetail__image w-full sm:w-1/3 z-1">
                     <ImageZoom image={product.image} className="z-1" />
                 </div>
-                <div className="productDetail__box md:w-1/2  lg:w-1/2 flex flex-col ">
+                <div className="productDetail__box w-full sm:w-1/2 flex flex-col ">
                     <div className="productDetail__info border-b-2 border-b-slate-300">
                         <p className="my-2 font-bold text-3xl">
                             {product.title}
@@ -93,7 +93,7 @@ function ProductDetailCtn() {
                         {product.description}
                     </TabPane>
                     <TabPane tab="Review" key="2">
-                        Content of Tab Pane 2
+                        There are no reviews for this product yet
                     </TabPane>
                 </Tabs>
             </div>

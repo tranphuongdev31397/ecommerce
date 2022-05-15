@@ -8,3 +8,11 @@
         width: 300px;
     }
 }
+@media screen and (max-width: 639.8px) {
+    .imageZoom {
+        & .imageZoom__box {
+            left: 50%;
+            pointer-events: none;
+        }
+    }
+}
